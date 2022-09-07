@@ -219,3 +219,122 @@
 #
 #
 # brand(a='apple', b='samsung')
+# -----------------------------------------------------------------------------
+# L17
+# s = []
+# for i in range(1, 21):
+#     if i % 5 == 0:
+#         s.append(i)
+# print(s)
+# # generator
+# s1 = [i ** 3 for i in range(1, 21) if i % 5 == 0]
+# print(s1)
+# s = []
+# for i in range(1, 21):
+#     for j in range(1, 51):
+#         s.append((i, j))
+# print(s)
+#
+# s1 = [(i, j) for i in range(1, 21) for j in range(1, 51)]
+# print(s1)
+# s = []
+# for i in range(-10, 11):
+#     if i > 0:
+#         s.append(i ** 2)
+#     else:
+#         s.append(i ** 3)
+# print(s)
+# s1 = [i ** 2
+#       if i > 0
+#       else i ** 3
+#       for i in range(-10, 11)
+#       if i % 2 == 0]
+# print(s1)
+# s = [7, 8, 8, -10, -10]
+# set_set = {i for i in s}
+# print(set_set)
+# dictionary = {i: i ** 10 for i in s}
+# print(dictionary)
+# ---------------------------------------------------------------------------
+# # L18
+# import builtins
+# print(dir(builtins))
+# y = 2
+#
+#
+# def degree(x):
+#     return y ** x
+#
+#
+# print(degree(4))
+# def degree(x):
+#     y = 2
+#     return y ** x
+#
+#
+# print(degree(4))
+# def degree(x):
+#     y = 2
+#
+#     def degree_two():
+#         return y ** x
+#
+#     return degree_two()
+#
+#
+# print(degree(4))
+# def message(number):
+#     def print_message():
+#         return 'Number ' + str(number)
+#
+#     return print_message()
+#
+#
+# print(message(78))
+# def message(x):
+#     def print_message(y):
+#         return x, y
+#
+#     return print_message
+#
+#
+# d = message(4)
+# print(d(8))
+# print(d(5))
+# print(d(6))
+# ------------------------------------------------------------------
+# L19
+# def decor(func):
+#     def wrapper(n):
+#         print('start')
+#         func(n)
+#         print('end')
+#
+#     return wrapper
+#
+#
+# @decor
+# def my_func(number):
+#     print(number ** 2)
+#
+#
+# my_func(10)
+# import time
+#
+#
+# def my_decor(func):
+#     def my_wr():
+#         start_time = time.time()
+#         func()
+#         print(time.time() - start_time)
+#
+#     return my_wr
+#
+#
+# @my_decor
+# def sp():
+#     list1 = [i ** 2 for i in range(100000) if i % 2 == 0]
+#     print(list1)
+#
+#
+# sp()
