@@ -1,6 +1,7 @@
 import pygame, sys
 from bullet import Bullet
 from alien import Alien
+import time
 
 
 def events(screen, gun, bullets):
@@ -35,16 +36,44 @@ def update(bg_color, screen, gun, aliens, bullets):
     pygame.display.flip()
 
 
-def update_bullets(bullets):
+def update_bullets(screen, aliens, bullets):
     """update bullet position"""
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+    if len(aliens) == 0:
+        bullets.empty()
+        create_army(screen, aliens)
 
-def update_alien_position(aliens):
+
+def gun_kill(stats, screen, gun, aliens, bullets):
+    """clash of gun and aliens"""
+    stats.guns_left -= 1
+    aliens.empty()
+    bullets.empty()
+    create_army(screen, aliens)
+    gun.create_gun()
+    time.sleep(1)
+
+
+def update_alien_position(stats, screen, gun, aliens, bullets):
     """updating aliens positions"""
     aliens.update()
+    if pygame.sprite.spritecollideany(gun, aliens):
+        gun_kill(stats, screen, gun, aliens, bullets)
+    aliens_check(stats, screen, gun, aliens, bullets)
+
+
+def aliens_check(stats, screen, gun, aliens, bullets):
+    """check of aliens move to screen down end"""
+    screen_rect = screen.get_rect()
+    for alien in aliens.sprites():
+        if alien.rect.bottom >= screen_rect.bottom:
+            gun_kill(stats, screen, gun, aliens, bullets)
+            break
+
 
 def create_army(screen, aliens):
     """create army of aliens"""

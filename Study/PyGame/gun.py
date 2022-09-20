@@ -27,3 +27,8 @@ class Gun():
             self.center -= 1.5
 
         self.rect.centerx = self.center
+
+    def create_gun(self):
+        """places the gun in the bottom center"""
+        self.center = self.screen_rect.centerx
+
