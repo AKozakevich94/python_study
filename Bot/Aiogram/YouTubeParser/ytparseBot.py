@@ -1,5 +1,5 @@
 from youtube_search import YoutubeSearch
-from config import TOKEN
+import config
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
@@ -11,8 +11,13 @@ def searcher(text):
     return res
 
 
-bot = Bot(token=TOKEN)
+bot = Bot(token=config.TOKEN)
 dp = Dispatcher(bot)
+
+
+@dp.message_handler()
+async def start(message: types.Message):
+    await message.answer('Не надо мне писать, это инлайн бот!')
 
 
 @dp.inline_handler()
