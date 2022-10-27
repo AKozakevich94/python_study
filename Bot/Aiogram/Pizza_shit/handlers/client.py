@@ -16,7 +16,7 @@ async def commands_start(message: types.Message):
 
 # @dp.message_handler(commands=['Расположение'])
 async def pizza_place_command(message: types.Message):
-    await bot.send_message(message.from_user.id, 'ул. Пиццерийная, 25', reply_markup=ReplyKeyboardRemove())
+    await bot.send_message(message.from_user.id, 'ул. Пиццерийная, 25') #, reply_markup=ReplyKeyboardRemove())
 
 
 # @dp.message_handler(commands=['Режим_работы'])
